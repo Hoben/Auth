@@ -1,9 +1,13 @@
 {
     "name": "hoben/auth",
     "description": "Easy and clean login module",
-    "authors": [
-        { "name": "Habib Bargaoui", "role": "Developer" }
-    ],
+    "authors": [{
+        "name": "Habib Bargaoui",
+        "email": "bargaoui.habib@gmail.com",
+        "role": "Developer"
+    }],
+    "license": "MIT",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3"
     },
