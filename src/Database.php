@@ -1,6 +1,7 @@
 <?php
-namespace Hobben\Auth;
+namespace Hoben\Auth;
 
-interface Database{
+interface Database
+{
     public function connect();
 }

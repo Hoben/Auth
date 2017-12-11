@@ -1,5 +1,5 @@
 <?php
-namespace Hobben\Auth;
+namespace Hoben\Auth;
 
 class MySQLDatabase implements Database
 {
@@ -27,7 +27,7 @@ class MySQLDatabase implements Database
     /**
      * connects to database
      *
-     * @return  
+     * @return
      */
     public function connect()
     {
@@ -35,7 +35,8 @@ class MySQLDatabase implements Database
         echo ($this->getDataServer()->getHost());
     }
 
-    public function __construct(){
+    public function __construct()
+    {
         $data_server = new \Hobben\Auth\DataServer(\HOST, \DATABASE_NAME, \USER_NAME, \USER_PASSWORD);
         $this->data_server = $data_server;
     }

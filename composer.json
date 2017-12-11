@@ -1,5 +1,5 @@
 {
-    "name": "hobben/auth",
+    "name": "hoben/auth",
     "description": "Easy and clean login module",
     "authors": [
         { "name": "Habib Bargaoui", "role": "Developer" }
@@ -9,7 +9,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Hobben\\Auth\\": "src/"
+            "Hoben\\Auth\\": "src/"
         }
     }
 }
