@@ -1,6 +1,6 @@
 {
     "name": "hoben/auth",
-    "description": "Easy and clean login module",
+    "description": "Simple and easy authentification package for beginners",
     "authors": [{
         "name": "Habib Bargaoui",
         "email": "bargaoui.habib@gmail.com",
