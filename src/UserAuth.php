@@ -3,7 +3,6 @@
 namespace Hoben\Auth;
 
 use Hoben\Auth\Config;
-use Hoben\Auth\MySQLDatabase;
 use Hoben\Auth\Session;
 
 class UserAuth
@@ -60,7 +59,7 @@ class UserAuth
     public static function connectUser($login, $password)
     {
         Session::start();
-        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . Config::TABLE_USER . " WHERE login = $login && password = $password");
+        $user = DBContext::getDB()->query("SELECT * FROM " . Config::TABLE_USER . " WHERE login = " . $login . " && password = " . $password)->fetch();
         if ($user == null) {
             throw InvalidCredentialsException();
         } else {
@@ -69,6 +68,16 @@ class UserAuth
 
     }
 
+    public static function registerUser($login, $password)
+    {
+        Session::start();
+        $db = DBContext::startDB();
+        $stmt = $db->prepare("INSERT INTO " . Config::TABLE_USER_AUTH . "(login,password) VALUES (:login,:password)");
+        $stmt->bindParam(':login', $login);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+        DBContext::endDB($db);
+    }
     public static function checkUserConnexion($get = false)
     {
         Session::start();
@@ -84,17 +93,17 @@ class UserAuth
 
     public static function getUserByLogin($login)
     {
-        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . Config::TABLE_USER . " WHERE login = $login");
+        $user = DBContext::startDB()->query("SELECT * FROM " . Config::TABLE_USER_AUTH . " WHERE login = " . $login);
         if ($user == null) {
             throw InvalidCredentialsException();
         } else {
-            return new UserAuth($id, $login);
+            return $user[0];
         }
     }
 
     public static function getUser($id)
     {
-        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . Config::TABLE_USER . " WHERE id = $id");
+        $user = DBContext::getDB()->query("SELECT * FROM " . Config::TABLE_USER . " WHERE id = " . $id)->fetch();
         if ($user == null) {
             throw InvalidCredentialsException();
         } else {
