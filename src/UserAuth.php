@@ -2,6 +2,7 @@
 
 namespace Hoben\Auth;
 
+use Hoben\Auth\Config;
 use Hoben\Auth\MySQLDatabase;
 use Hoben\Auth\Session;
 
@@ -59,7 +60,7 @@ class UserAuth
     public static function connectUser($login, $password)
     {
         Session::start();
-        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . TABLE_USER . " WHERE login = $login && password = $password");
+        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . Config::TABLE_USER . " WHERE login = $login && password = $password");
         if ($user == null) {
             throw InvalidCredentialsException();
         } else {
@@ -83,7 +84,7 @@ class UserAuth
 
     public static function getUserByLogin($login)
     {
-        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . TABLE_USER . " WHERE login = $login");
+        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . Config::TABLE_USER . " WHERE login = $login");
         if ($user == null) {
             throw InvalidCredentialsException();
         } else {
@@ -93,7 +94,7 @@ class UserAuth
 
     public static function getUser($id)
     {
-        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . TABLE_USER . " WHERE id = $id");
+        $user = MySQLDatabase::executeQuery("SELECT * INTO TABLE " . Config::TABLE_USER . " WHERE id = $id");
         if ($user == null) {
             throw InvalidCredentialsException();
         } else {

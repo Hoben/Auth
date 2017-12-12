@@ -1,6 +1,9 @@
 <?php
 namespace Hoben\Auth;
 
+use \Hoben\Auth\Config;
+use \Hoben\Auth\DataServer;
+
 class MySQLDatabase implements Database
 {
     protected $data_server;
@@ -37,7 +40,7 @@ class MySQLDatabase implements Database
 
     public function __construct()
     {
-        $data_server = new \Hobben\Auth\DataServer(\HOST, \DATABASE_NAME, \USER_NAME, \USER_PASSWORD);
+        $data_server = new DataServer(Config::HOST, Config::DATABASE_NAME, Config::USER_NAME, Config::USER_PASSWORD);
         $this->data_server = $data_server;
     }
 }
